@@ -1,0 +1,3 @@
+[submodule "vendor/chords"]
+	path = vendor/chords
+	url = https://github.com/jphinspace/chords.git

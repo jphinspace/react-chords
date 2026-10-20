@@ -1,84 +1,44 @@
-# react-chords
+# Chords tester
 
-React library for easily generate string instruments SVG chord diagrams
+This project uses [Vite](https://vite.dev/) for development and production builds, and [Vitest](https://vitest.dev/) for tests.
 
-## Installation
+The tester consumes the generated catalog from [jphinspace/chords](https://github.com/jphinspace/chords), tracked as the `vendor/chords` Git submodule. Before starting, testing, or building, an npm lifecycle hook runs that submodule's `buildCatalog` task and copies `build/catalog/catalog.json` into the ignored `.generated/` directory. The catalog is generated locally and is not checked into this repository.
 
-### With NPM
+Install the UI dependencies from the repository root, then start the app:
 
-```
-npm install @tombatossals/react-chords
-```
-
-### With Yarn
-
-```
-yarn add @tombatossals/react-chords
+```bash
+npm install
+npm start
 ```
 
-## Usage
+The UI consumes the renderer from the local [`react-chords/`](./react-chords/) package.
 
-```js
-import React from 'react'
-import ReactDOM from 'react-dom'
+The submodule is initialized automatically when cloning with `--recurse-submodules`. For an existing clone, run:
 
-import Chord from '@tombatossals/react-chords'
-
-const GuitarChord = () => {
-  const chord = {
-    frets: [1, 3, 3, 2, 1, 1],
-    fingers: [1, 3, 4, 2, 1, 1],
-    barres: [1],
-    capo: false,
-  }
-  const instrument = {
-    strings: 6,
-    fretsOnChord: 4,
-    name: 'Guitar',
-    keys: [],
-    tunings: {
-      standard: ['E', 'A', 'D', 'G', 'B', 'E']
-    }
-  }
-  const lite = false // defaults to false if omitted
-  return (
-    <Chord
-      chord={chord}
-      instrument={instrument}
-      lite={lite}
-    />
-  )
-}
-
-ReactDOM.render(
-  <GuitarChord />,
-  document.getElementById('root')
-);
+```bash
+git submodule update --init --recursive
 ```
 
-### Piano
+Set `CHORDS_PATH` if you need to use a different checkout instead:
 
-```js
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Chord from '@tombatossals/react-chords'
-
-const PianoChord = () => {
-    const chord = {
-        frets: ['C', 'E', 'G']
-    }
-    const instrument = {
-        name: 'Piano'
-    }
-    return <Chord chord={chord} instrument={instrument} />
-}
-
-ReactDOM.render(
-  <PianoChord />,
-  document.getElementById('root')
-);
+```bash
+CHORDS_PATH=/path/to/chords npm start
 ```
 
-## Example of use
-Using the [chords-db](http://github.com/tombatossals/chords-db) database we can get this result:
-[![react-chords](https://raw.githubusercontent.com/tombatossals/react-chords/webpage/src/images/react-chords.png)](https://tombatossals.github.io/react-chords/)
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the Vite development server at [http://localhost:3000](http://localhost:3000).
+
+### `npm test`
+
+Launches Vitest in watch mode. Use `npm run test:run` for a single non-interactive run.
+
+### `npm run build`
+
+Builds the optimized production site into the repository's `docs` folder for GitHub Pages.
+
+### `npm run preview`
+
+Serves the production build locally for verification.
