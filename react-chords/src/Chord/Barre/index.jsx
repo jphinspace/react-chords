@@ -46,13 +46,13 @@ const Barre = ({ barre, frets, capo, finger, lite }) => {
             m -4, 0
             a 4,4 0 1,1 8,0
           `}
-            fill='#555'
+            fill='var(--chord-barre, #555)'
             fillOpacity={0.2}
             transform='rotate(-90)'
           />
         </g>
         <rect
-          fill='#555'
+          fill='var(--chord-barre, #555)'
           x={fretXPosition[strings][0]}
           y={fretYPosition[barre - 1]}
           width={(strings - 1) * 10}
@@ -67,7 +67,7 @@ const Barre = ({ barre, frets, capo, finger, lite }) => {
             m -4, 0
             a 4,4 0 1,1 8,0
           `}
-            fill='#555'
+            fill='var(--chord-barre, #555)'
             fillOpacity={0.2}
             transform='rotate(90)'
           />
@@ -78,8 +78,8 @@ const Barre = ({ barre, frets, capo, finger, lite }) => {
         <circle
           key={fret.position}
           strokeWidth='0.25'
-          stroke='#444'
-          fill='#444'
+          stroke='var(--chord-line, #444)'
+          fill='var(--chord-line, #444)'
           cx={getStringPosition(strings - fret.position, strings)}
           cy={positions.fret[fret.value]}
           r={4}
@@ -87,7 +87,7 @@ const Barre = ({ barre, frets, capo, finger, lite }) => {
         )
       }
       <rect
-        fill='#444'
+        fill='var(--chord-line, #444)'
         x={fretXPosition[strings][string1]}
         y={y}
         width={width}

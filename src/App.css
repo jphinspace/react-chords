@@ -1,5 +1,116 @@
 @import "tailwindcss";
 
+.app-shell {
+  min-height: 100vh;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  width: min(58%, 34rem);
+}
+
+.search-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+html[data-theme='dark'] .bg-white {
+  background-color: #0f172a !important;
+}
+
+html[data-theme='dark'] .text-gray-800 {
+  color: #e2e8f0 !important;
+}
+
+html[data-theme='dark'] .border-gray-200 {
+  border-color: #334155 !important;
+}
+
+html[data-theme='dark'] .border-transparent:hover,
+html[data-theme='dark'] .hover\:bg-gray-200:hover,
+html[data-theme='dark'] .hover\:bg-gray-100:hover {
+  background-color: #1e293b !important;
+}
+
+html[data-theme='dark'] .text-blue-500 {
+  color: #93c5fd !important;
+}
+
+html[data-theme='dark'] .bg-gray-200 {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+html[data-theme='dark'] .search-input {
+  background: #1e293b;
+  border: 1px solid #475569;
+  color: #f8fafc;
+}
+
+html[data-theme='dark'] .search-input::placeholder {
+  color: #94a3b8;
+}
+
+html[data-theme='dark'] .chord-play-button {
+  background: #334155;
+  border-color: #64748b;
+  --chord-play: #f8fafc;
+}
+
+html[data-theme='dark'] .chord-play-button:hover {
+  background: #475569;
+}
+
+html[data-theme='dark'] .chord-diagram {
+  --chord-line: #cbd5e1;
+  --chord-barre: #cbd5e1;
+}
+
+@media (max-width: 640px) {
+  header {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .theme-toggle-label {
+    display: none;
+  }
+}
+
 /* Custom styles that are harder to replicate with utility classes */
 .chords-grid.all-selected {
   grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));

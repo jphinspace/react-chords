@@ -8,7 +8,7 @@ export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/react-chords/' : '/',
   plugins: [react(), tailwindcss()],
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
     emptyOutDir: true
   },
   server: {

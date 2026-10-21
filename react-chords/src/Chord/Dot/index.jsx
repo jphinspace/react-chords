@@ -24,7 +24,7 @@ const Dot = ({ string, fret, finger, strings, lite }) =>
   fret === -1
     ? <text
       fontSize='0.7rem'
-      fill='#444'
+      fill='var(--chord-line, #444)'
       fontFamily='Verdana'
       textAnchor='middle'
       x={getStringPosition(string, strings)}
@@ -33,8 +33,8 @@ const Dot = ({ string, fret, finger, strings, lite }) =>
     : (<g>
       <circle
         strokeWidth='0.25'
-        stroke='#444'
-        fill={fret === 0 ? 'transparent' : '#444'}
+        stroke='var(--chord-line, #444)'
+        fill={fret === 0 ? 'transparent' : 'var(--chord-line, #444)'}
         cx={getStringPosition(string, strings)}
         cy={positions.fret[fret]}
         r={fret === 0 ? radius['open'] : radius['fret']}

@@ -15,6 +15,7 @@ const Chord = ({ chord, instrument, lite }) =>
   chord && chord.frets ? <svg
     width='100%'
     xmlns='http://www.w3.org/2000/svg'
+    className='chord-diagram'
     preserveAspectRatio='xMinYMin meet'
     viewBox='0 0 80 70'>
     { instrument.name === 'Piano'

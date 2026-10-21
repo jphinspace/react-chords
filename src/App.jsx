@@ -40,6 +40,16 @@ function ChordBrowser() {
     const selectedSuffix = params.suffix || 'All';
 
     const [searchTerm, setSearchTerm] = useState('');
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        if (typeof window === 'undefined') return false;
+        const savedTheme = window.localStorage.getItem('chords-theme');
+        return savedTheme ? savedTheme === 'dark' : window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+    });
+
+    useEffect(() => {
+        document.documentElement.dataset.theme = isDarkMode ? 'dark' : 'light';
+        window.localStorage.setItem('chords-theme', isDarkMode ? 'dark' : 'light');
+    }, [isDarkMode]);
 
     // Limpa a busca ao trocar de página
     useEffect(() => {
@@ -64,16 +74,29 @@ function ChordBrowser() {
       : allKeys.filter(key => key === selectedKey);
 
   return (
-      <div className="text-center bg-white text-gray-800">
+      <div className="app-shell text-center bg-white text-gray-800">
           <header className="bg-gray-800 text-white p-5 flex justify-between items-center">
               <h1 className="text-2xl">Chords Database</h1>
-              <input
-                  type="text"
-                  placeholder="Search chord..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="p-2 rounded text-gray-800 text-base w-1/3"
-              />
+              <div className="header-actions">
+                  <input
+                      type="text"
+                      placeholder="Search chord..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="p-2 rounded text-gray-800 text-base w-1/3 search-input"
+                  />
+                  <button
+                      type="button"
+                      className="theme-toggle"
+                      onClick={() => setIsDarkMode(current => !current)}
+                      aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                      aria-pressed={isDarkMode}
+                      title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                  >
+                      <span aria-hidden="true">{isDarkMode ? '☀' : '☾'}</span>
+                      <span className="theme-toggle-label">{isDarkMode ? 'Light' : 'Dark'}</span>
+                  </button>
+              </div>
           </header>
           <div className="p-5 max-w-7xl mx-auto text-left">
                 <ul className="flex list-none py-4 px-0 m-0 border-b border-gray-200 gap-3">

@@ -37,7 +37,7 @@ Launches Vitest in watch mode. Use `npm run test:run` for a single non-interacti
 
 ### `npm run build`
 
-Builds the optimized production site into the repository's `docs` folder for GitHub Pages.
+Builds the optimized production site into the ignored `dist` folder. GitHub Pages deployment is handled by [`.github/workflows/deploy-pages.yml`](./.github/workflows/deploy-pages.yml).
 
 ### `npm run preview`
 

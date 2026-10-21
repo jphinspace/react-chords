@@ -32,14 +32,14 @@ const getBarreOffset = (strings, frets, baseFret, capo) =>
 const Neck = ({ tuning, frets, strings, fretsOnChord, baseFret, capo, lite }) => {
   return <g>
     <path
-      stroke='#444'
+      stroke='var(--chord-line, #444)'
       strokeWidth='0.25'
       strokeLinecap='square'
       strokeLinejoin='square'
       d={getNeckPath(strings, fretsOnChord)} />
     { baseFret === 1
       ? <path
-        stroke='#444'
+        stroke='var(--chord-line, #444)'
         strokeWidth='2'
         strokeLinecap='round'
         strokeLinejoin='round'
@@ -47,7 +47,7 @@ const Neck = ({ tuning, frets, strings, fretsOnChord, baseFret, capo, lite }) =>
       />
       : <text
         fontSize='0.25rem'
-        fill='#444'
+        fill='var(--chord-line, #444)'
         fontFamily='Verdana'
         x={getBarreOffset(strings, frets, baseFret, capo)}
         y='8'
@@ -58,7 +58,7 @@ const Neck = ({ tuning, frets, strings, fretsOnChord, baseFret, capo, lite }) =>
           <text
             key={index}
             fontSize='0.3rem'
-            fill='#444'
+            fill='var(--chord-line, #444)'
             fontFamily='Verdana'
             textAnchor='middle'
             x={offsets[strings].x + index * 10}
